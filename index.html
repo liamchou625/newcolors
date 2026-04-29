@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAGUARO Feedback</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial;}
+
+body { background:#f2f2f2; margin:0; }
+
+.hero {
+  background: linear-gradient(135deg,#268f64,#1f7551);
+  color:#fff;
+  text-align:center;
+  padding:30px 20px;
+}
+
+.container {
+  max-width:700px;
+  margin:-20px auto;
+  padding:15px;
+}
+
+.card {
+  background:#fff;
+  border-radius:14px;
+  padding:20px;
+  margin-top:20px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+}
+
+.section-title {
+  font-size:18px;
+  font-weight:bold;
+  color:#268f64;
+}
+
+.section-desc {
+  font-size:13px;
+  color:#666;
+  margin-bottom:10px;
+}
+
+.question { margin-top:18px; }
+
+.label { font-weight:bold; margin-bottom:8px; }
+
+.rating-group {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.rating-btn {
+  flex:1;
+  min-width:48px;
+  padding:12px 0;
+  border:1px solid #ddd;
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.15s;
+  background:#fff;
+}
+
+.rating-btn:hover { transform:scale(1.05); }
+
+.rating-btn.active {
+  background:#268f64;
+  color:#fff;
+  border-color:#268f64;
+}
+
+textarea,input {
+  width:100%;
+  padding:12px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+.submit-btn {
+  width:100%;
+  background:#268f64;
+  color:#fff;
+  padding:16px;
+  border:none;
+  border-radius:10px;
+  margin-top:20px;
+  font-size:16px;
+}
+
+.reward-box {
+  background:#e8f5ef;
+  border-left:4px solid #268f64;
+  padding:12px;
+  border-radius:8px;
+}
+
+#result { text-align:center; margin-top:15px; color:#268f64; }
+
+/* ===== IMAGE SELECTOR ===== */
+.image-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:10px;
+}
+
+.image-card {
+  border:2px solid #eee;
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:0.2s;
+  background:#fff;
+}
+
+.image-card img {
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  display:block;
+}
+
+.image-card:hover {
+  transform:scale(1.03);
+}
+
+.image-card.active {
+  border-color:#268f64;
+  box-shadow:0 0 0 2px rgba(38,143,100,0.2);
+}
+
+.img-label {
+  text-align:center;
+  padding:8px;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+<h1>Smart 1 Pro Feedback</h1>
+<p>Earn €3–€8 Reward</p>
+</div>
+
+<div class="container">
+<form id="form">
+
+<div class="card reward-box">
+🎁 €3 basic · €5–€8 detailed feedback
+</div>
+
+<div class="card">
+<div class="label">Email *</div>
+<input type="email" id="email">
+</div>
+
+<!-- 1 -->
+<div class="card">
+<div class="section-title">1. Size & Fitting</div>
+
+<div class="question">
+<div class="label">Size Fit *</div>
+<div class="rating-group" data-name="sizeFit">
+<div class="rating-btn">😟</div><div class="rating-btn">😐</div><div class="rating-btn">🙂</div><div class="rating-btn">😊</div><div class="rating-btn">😄</div>
+</div>
+</div>
+
+<div class="question">
+<div class="label">Is it wide enough？ *</div>
+<div class="rating-group" data-name="width">
+<div class="rating-btn">😟</div><div class="rating-btn">😐</div><div class="rating-btn">🙂</div><div class="rating-btn">😊</div><div class="rating-btn">😄</div>
+</div>
+</div>
+
+<div class="question">
+<div class="label">Barefoot feel & flexibility *</div>
+<div class="rating-group" data-name="flexibility">
+<div class="rating-btn">😟</div><div class="rating-btn">😐</div><div class="rating-btn">🙂</div><div class="rating-btn">😊</div><div class="rating-btn">😄</div>
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<div class="section-title">2. Wearing Experience</div>
+
+<div class="question">
+<div class="label">Instep comfort *</div>
+<div class="rating-group" data-name="instep">
+<div class="rating-btn">😟</div><div class="rating-btn">😐</div><div class="rating-btn">🙂</div><div class="rating-btn">😊</div><div class="rating-btn">😄</div>
+</div>
+</div>
+
+<div class="question">
+<div class="label">Lace *</div>
+<div class="rating-group" data-name="lace">
+<div class="rating-btn">😟</div><div class="rating-btn">😐</div><div class="rating-btn">🙂</div><div class="rating-btn">😊</div><div class="rating-btn">😄</div>
+</div>
+</div>
+
+<div class="question">
+<div class="label">Heel Rub *</div>
+<div class="rating-group" data-name="heelRub">
+<div class="rating-btn">Yes</div><div class="rating-btn">No</div>
+</div>
+</div>
+
+<textarea id="feedback" placeholder="Detailed Feedback"></textarea>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<div class="section-title">3. Expectation & Value</div>
+
+<div class="question">
+<div class="label">Meet expectation *</div>
+<div class="rating-group" data-name="expectation">
+<div class="rating-btn">Yes</div><div class="rating-btn">No</div>
+</div>
+<textarea id="expectationReason" style="display:none"></textarea>
+</div>
+
+<div class="question">
+<div class="label">Value match *</div>
+<div class="rating-group" data-name="valueMatch">
+<div class="rating-btn">Yes</div><div class="rating-btn">No</div>
+</div>
+<textarea id="valueReason" style="display:none"></textarea>
+</div>
+
+<div class="question">
+<div class="label">Odor</div>
+<div class="rating-group" data-name="odor">
+<div class="rating-btn">😟</div><div class="rating-btn">😐</div><div class="rating-btn">🙂</div><div class="rating-btn">😊</div><div class="rating-btn">😄</div>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<div class="section-title">4. Comparison</div>
+
+<div class="rating-group" data-name="comparison">
+<div class="rating-btn">Better</div>
+<div class="rating-btn">Same</div>
+<div class="rating-btn">Worse</div>
+</div>
+
+<textarea id="difference"></textarea>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<div class="section-title">5. Rating</div>
+<div class="rating-group" data-name="rating">
+<div class="rating-btn">1</div><div class="rating-btn">2</div><div class="rating-btn">3</div><div class="rating-btn">4</div><div class="rating-btn">5</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<div class="section-title">6. Usage</div>
+
+<textarea id="usage"></textarea>
+<textarea id="suggestion"></textarea>
+
+<div class="label">Which new color would you like?</div>
+
+<div class="image-grid" data-name="color">
+
+  <div class="image-card" data-value="Black">
+    <img src="https://your-cdn.com/black.jpg">
+    <div class="img-label">Black</div>
+  </div>
+
+  <div class="image-card" data-value="Beige">
+    <img src="https://your-cdn.com/beige.jpg">
+    <div class="img-label">Beige</div>
+  </div>
+
+  <div class="image-card" data-value="Green">
+    <img src="https://your-cdn.com/green.jpg">
+    <div class="img-label">Green</div>
+  </div>
+
+  <div class="image-card" data-value="Blue">
+    <img src="https://your-cdn.com/blue.jpg">
+    <div class="img-label">Blue</div>
+  </div>
+
+</div>
+
+</div>
+
+<button class="submit-btn">Submit</button>
+<div id="result"></div>
+
+</form>
+</div>
+
+<script>
+const scriptURL = "YOUR_APPS_SCRIPT_URL";
+const data = {};
+
+const form = document.getElementById("form");
+const email = document.getElementById("email");
+const feedback = document.getElementById("feedback");
+const expectationReason = document.getElementById("expectationReason");
+const valueReason = document.getElementById("valueReason");
+const difference = document.getElementById("difference");
+const usage = document.getElementById("usage");
+const suggestion = document.getElementById("suggestion");
+const result = document.getElementById("result");
+
+/* ratings */
+document.querySelectorAll(".rating-group").forEach(g=>{
+  const name=g.dataset.name;
+
+  g.querySelectorAll(".rating-btn").forEach(btn=>{
+    btn.onclick=()=>{
+
+      g.querySelectorAll(".rating-btn")
+        .forEach(b=>b.classList.remove("active"));
+
+      btn.classList.add("active");
+
+      data[name]=btn.innerText;
+
+      if(name==="expectation")
+        expectationReason.style.display = btn.innerText==="No"?"block":"none";
+
+      if(name==="valueMatch")
+        valueReason.style.display = btn.innerText==="No"?"block":"none";
+    };
+  });
+});
+
+/* image select */
+document.querySelectorAll(".image-card").forEach(card=>{
+  card.onclick=()=>{
+
+    document.querySelectorAll(".image-card")
+      .forEach(c=>c.classList.remove("active"));
+
+    card.classList.add("active");
+
+    data.color = card.dataset.value;
+  };
+});
+
+/* submit */
+form.onsubmit=async(e)=>{
+  e.preventDefault();
+
+  if(!email.value){
+    alert("email required");
+    return;
+  }
+
+  const payload={
+    email:email.value,
+    ...data,
+    feedback:feedback.value,
+    expectationReason:expectationReason.value,
+    valueReason:valueReason.value,
+    difference:difference.value,
+    usage:usage.value,
+    suggestion:suggestion.value
+  };
+
+  result.innerHTML="Submitting...";
+
+  await fetch(scriptURL,{
+    method:"POST",
+    body:JSON.stringify(payload)
+  });
+
+  result.innerHTML="Done 🎉";
+};
+</script>
+
+</body>
+</html>
